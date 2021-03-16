@@ -17,7 +17,7 @@
 */
 package com.nagarro.customqueueimplementation.exception;
 
-public class IllegalStateException {
+public class IllegalStateException extends RuntimeException{
     private static final String EXCEPTION = "Exception: ";
 
     /**

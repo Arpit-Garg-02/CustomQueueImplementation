@@ -17,10 +17,12 @@
 */
 package com.nagarro.customqueueimplementation.service;
 
+import java.util.Iterator;
+
 import com.nagarro.customqueueimplementation.exception.IllegalStateException;
 import com.nagarro.customqueueimplementation.model.Node;
 
-public class CustomQueue {
+public class CustomQueue implements Iterable<Object> {
     private static final String QUEUE_IS_EMPTY = "Queue is Empty!";
     private int length;
     private Node front, rear;
@@ -151,14 +153,19 @@ public class CustomQueue {
     /**
      * Iterator for queue
      */
-    public String toString() {
-        String output = "";
-        Node node = front;
-        while (node != null) {
-            output += ", " + node.getValue();
-            node = node.getNext();
+    public void customIterator(CustomQueue queue) {
+//        /String output = "";
+//        Node node = front;
+//        while (node != null) {
+//            output += ", " + node.getValue();
+//            node = node.getNext();
+//        }
+//        return "[" + output.substring(1) + " ]";
+        Iterator itr = queue.iterator();
+        System.out.println(itr.hasNext());
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
         }
-        return "[" + output.substring(1) + " ]";
     }
 
     /**
@@ -174,5 +181,10 @@ public class CustomQueue {
             node = node.getNext();
         }
         System.out.println();
+    }
+
+    @Override
+    public Iterator<Object> iterator() {
+        return new QueueIterator(front);
     }
 }
